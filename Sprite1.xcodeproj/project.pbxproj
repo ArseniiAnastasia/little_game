@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D25C3DD201DF7A10086E01F /* GameScene_Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D25C3DC201DF7A10086E01F /* GameScene_Physics.swift */; };
+		5D25C3E1201E0C0B0086E01F /* fram1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3DE201E0C0A0086E01F /* fram1.png */; };
+		5D25C3E2201E0C0B0086E01F /* fram0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3DF201E0C0B0086E01F /* fram0.png */; };
+		5D25C3E3201E0C0B0086E01F /* fram2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3E0201E0C0B0086E01F /* fram2.png */; };
+		5D25C3E8201E0CD30086E01F /* ElectricGate02.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3E4201E0CD20086E01F /* ElectricGate02.png */; };
+		5D25C3E9201E0CD30086E01F /* ElectricGate03.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3E5201E0CD20086E01F /* ElectricGate03.png */; };
+		5D25C3EA201E0CD30086E01F /* ElectricGate04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3E6201E0CD20086E01F /* ElectricGate04.png */; };
+		5D25C3EB201E0CD30086E01F /* ElectricGate01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D25C3E7201E0CD30086E01F /* ElectricGate01.png */; };
 		5DFFE6D32014990700B7204B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFE6D22014990700B7204B /* AppDelegate.swift */; };
 		5DFFE6D52014990700B7204B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5DFFE6D42014990700B7204B /* GameScene.sks */; };
 		5DFFE6D92014990700B7204B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFE6D82014990700B7204B /* GameScene.swift */; };
@@ -29,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D25C3DC201DF7A10086E01F /* GameScene_Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Physics.swift; sourceTree = "<group>"; };
+		5D25C3DE201E0C0A0086E01F /* fram1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fram1.png; sourceTree = "<group>"; };
+		5D25C3DF201E0C0B0086E01F /* fram0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fram0.png; sourceTree = "<group>"; };
+		5D25C3E0201E0C0B0086E01F /* fram2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fram2.png; sourceTree = "<group>"; };
+		5D25C3E4201E0CD20086E01F /* ElectricGate02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElectricGate02.png; sourceTree = "<group>"; };
+		5D25C3E5201E0CD20086E01F /* ElectricGate03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElectricGate03.png; sourceTree = "<group>"; };
+		5D25C3E6201E0CD20086E01F /* ElectricGate04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElectricGate04.png; sourceTree = "<group>"; };
+		5D25C3E7201E0CD30086E01F /* ElectricGate01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ElectricGate01.png; sourceTree = "<group>"; };
 		5DFFE6CF2014990700B7204B /* Sprite1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprite1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DFFE6D22014990700B7204B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DFFE6D42014990700B7204B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -87,6 +103,7 @@
 				5DFFE6D82014990700B7204B /* GameScene.swift */,
 				5DFFE7012014F0E400B7204B /* GameScene.Touch.swift */,
 				5DFFE6DA2014990700B7204B /* GameViewController.swift */,
+				5D25C3DC201DF7A10086E01F /* GameScene_Physics.swift */,
 				5DFFE6DC2014990700B7204B /* Main.storyboard */,
 				5DFFE6DF2014990700B7204B /* Assets.xcassets */,
 				5DFFE6E12014990700B7204B /* LaunchScreen.storyboard */,
@@ -110,6 +127,13 @@
 				5DFFE6F32014AC5C00B7204B /* run02.png */,
 				5DFFE6F42014AC5C00B7204B /* run03.png */,
 				5DFFE6F52014AC5C00B7204B /* run04.png */,
+				5D25C3DF201E0C0B0086E01F /* fram0.png */,
+				5D25C3DE201E0C0A0086E01F /* fram1.png */,
+				5D25C3E0201E0C0B0086E01F /* fram2.png */,
+				5D25C3E7201E0CD30086E01F /* ElectricGate01.png */,
+				5D25C3E4201E0CD20086E01F /* ElectricGate02.png */,
+				5D25C3E5201E0CD20086E01F /* ElectricGate03.png */,
+				5D25C3E6201E0CD20086E01F /* ElectricGate04.png */,
 			);
 			path = run;
 			sourceTree = "<group>";
@@ -147,7 +171,7 @@
 					5DFFE6CE2014990700B7204B = {
 						CreatedOnToolsVersion = 8.2.1;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -175,14 +199,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DFFE6FC2014AC5C00B7204B /* ju02.png in Resources */,
+				5D25C3E3201E0C0B0086E01F /* fram2.png in Resources */,
 				5DFFE6FA2014AC5C00B7204B /* coin3.png in Resources */,
 				5DFFE6FE2014AC5C00B7204B /* run02.png in Resources */,
+				5D25C3E2201E0C0B0086E01F /* fram0.png in Resources */,
+				5D25C3EA201E0CD30086E01F /* ElectricGate04.png in Resources */,
 				5DFFE7002014AC5C00B7204B /* run04.png in Resources */,
 				5DFFE6FB2014AC5C00B7204B /* ju01.png in Resources */,
+				5D25C3EB201E0CD30086E01F /* ElectricGate01.png in Resources */,
 				5DFFE6FF2014AC5C00B7204B /* run03.png in Resources */,
+				5D25C3E9201E0CD30086E01F /* ElectricGate03.png in Resources */,
 				5DFFE6DE2014990700B7204B /* Main.storyboard in Resources */,
 				5DFFE6F62014AC5C00B7204B /* coin.jpg in Resources */,
+				5D25C3E1201E0C0B0086E01F /* fram1.png in Resources */,
 				5DFFE6D52014990700B7204B /* GameScene.sks in Resources */,
+				5D25C3E8201E0CD30086E01F /* ElectricGate02.png in Resources */,
 				5DFFE6FD2014AC5C00B7204B /* run01.png in Resources */,
 				5DFFE6F72014AC5C00B7204B /* coin0.png in Resources */,
 				5DFFE6F82014AC5C00B7204B /* coin1.png in Resources */,
@@ -200,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DFFE6D92014990700B7204B /* GameScene.swift in Sources */,
+				5D25C3DD201DF7A10086E01F /* GameScene_Physics.swift in Sources */,
 				5DFFE7022014F0E400B7204B /* GameScene.Touch.swift in Sources */,
 				5DFFE6DB2014990700B7204B /* GameViewController.swift in Sources */,
 				5DFFE6D32014990700B7204B /* AppDelegate.swift in Sources */,
@@ -335,10 +367,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sprite1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Anastasia.Sprite1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
@@ -348,10 +384,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sprite1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Anastasia.Sprite1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
