@@ -8,27 +8,41 @@
 
 import UIKit
 import SpriteKit
-import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    var scene = GameScene(size: CGSize(width: 1024, height: 768))
+    let textureAtlas = SKTextureAtlas(named: "scene.atlas")
+    
+    @IBOutlet weak var reloadGameBtn: UIButton!
+    @IBOutlet weak var loadingView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
+        loadingView.isHidden = false
         
-          let scene = GameScene(size: CGSize(width: 1024, height: 768))
-                // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
-            
-            // Present the scene
-            view.presentScene(scene)
-            
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
+        reloadGameBtn.isHidden = true
+        
+        let view = self.view as! SKView
+        
+        view.ignoresSiblingOrder = true
+        
+        scene.scaleMode = .aspectFill
+        scene.gameViewControllerBridge = self
+        
+        textureAtlas.preload {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                self.loadingView.isHidden = true
+                view.presentScene(self.scene)
+            })
         
         }
+    }
+    @IBAction func reloadGameButton(sender: UIButton) {
+        scene.reloadGame()
+        scene.gameViewControllerBridge = self
+        reloadGameBtn.isHidden = true
     }
 
     override var shouldAutorotate: Bool {
