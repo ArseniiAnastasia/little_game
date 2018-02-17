@@ -1,26 +1,91 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Sprite1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCN-Ps-F9C">
+                                <rect key="frame" x="296" y="150" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="VmS-Ai-bOx"/>
+                                    <constraint firstAttribute="width" constant="75" id="yWH-QY-HQY"/>
+                                </constraints>
+                                <state key="normal" image="reloadButton.png"/>
+                                <connections>
+                                    <action selector="reloadGameButtonWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cyb-om-Xac"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUf-4z-LJi">
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preview.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4n7-C8-uCx">
+                                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HB9-6M-xtH">
+                                        <rect key="frame" x="240" y="152" width="187" height="71"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="71" id="cbr-up-leL"/>
+                                            <constraint firstAttribute="width" constant="187" id="xDY-wb-WsX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="30"/>
+                                        <color key="textColor" red="0.43086606930562155" green="0.24101315650743341" blue="0.75771335659898476" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4n7-C8-uCx" secondAttribute="trailing" id="6X9-p5-KB6"/>
+                                    <constraint firstItem="4n7-C8-uCx" firstAttribute="top" secondItem="OUf-4z-LJi" secondAttribute="top" id="Jg8-lU-idW"/>
+                                    <constraint firstAttribute="bottom" secondItem="4n7-C8-uCx" secondAttribute="bottom" id="VbS-fa-AE8"/>
+                                    <constraint firstItem="HB9-6M-xtH" firstAttribute="centerX" secondItem="OUf-4z-LJi" secondAttribute="centerX" id="bUw-iF-Ccl"/>
+                                    <constraint firstItem="4n7-C8-uCx" firstAttribute="leading" secondItem="OUf-4z-LJi" secondAttribute="leading" id="gs5-BE-q2V"/>
+                                    <constraint firstItem="HB9-6M-xtH" firstAttribute="centerY" secondItem="OUf-4z-LJi" secondAttribute="centerY" id="zmI-KT-hJ2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OUf-4z-LJi" secondAttribute="trailing" id="9uC-lS-7rH"/>
+                            <constraint firstItem="VCN-Ps-F9C" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Fos-sj-Q6k"/>
+                            <constraint firstItem="VCN-Ps-F9C" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="LhM-3F-pxh"/>
+                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="OUf-4z-LJi" secondAttribute="bottom" id="UgJ-cr-cMa"/>
+                            <constraint firstItem="OUf-4z-LJi" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" id="nOa-c3-Iqm"/>
+                            <constraint firstItem="OUf-4z-LJi" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="wMT-vc-ra7"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadingView" destination="OUf-4z-LJi" id="gVC-y0-VD8"/>
+                        <outlet property="reloadGameBtn" destination="VCN-Ps-F9C" id="t8Z-KW-938"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.18140929535232" y="133.59999999999999"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="preview.jpg" width="1280" height="670"/>
+        <image name="reloadButton.png" width="75" height="75"/>
+    </resources>
 </document>
