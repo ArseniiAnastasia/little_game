@@ -14,15 +14,17 @@ extension GameScene {
         
         let objectNode = contact.bodyA.categoryBitMask == objectGroup ? contact.bodyA.node : contact.bodyB.node
         
-        if score > highscore {
-            highscore = score
+        if Model.sharedInstance.score > Model.sharedInstance.highscore {
+            Model.sharedInstance.highscore = Model.sharedInstance.score
         }
-        UserDefaults.standard.set(highscore, forKey: "highScore")
+        UserDefaults.standard.set(Model.sharedInstance.highscore, forKey: "highScore")
         
         if contact.bodyA.categoryBitMask == objectGroup || contact.bodyB.categoryBitMask == objectGroup {
             hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             
             if shieldBool == false {
+                
+                 Model.sharedInstance.totalscore = Model.sharedInstance.totalscore + Model.sharedInstance.score
                
                 hero.physicsBody?.allowsRotation = false
                 
@@ -48,18 +50,20 @@ extension GameScene {
                     self.showHighscoreText()
                     
                     self.gameViewControllerBridge.reloadGameBtn.isHidden = false
+                    self.gameViewControllerBridge.returnMainBtn.isHidden = false 
                     
                     self.stageLabel.isHidden = true
                     
-                    if self.score > self.highscore {
-                        self.highscore = self.score
+                    if Model.sharedInstance.self.score > Model.sharedInstance.self.highscore {
+                        Model.sharedInstance.self.highscore = Model.sharedInstance.self.score
                     }
                     
                     self.highscoreLabel.isHidden = false
                     self.highscoreTextLabel.isHidden = false
-                    self.highscoreLabel.text = "\(self.highscore)"
+                    self.highscoreLabel.text = "\(Model.sharedInstance.self.highscore)"
                 })
                 
+                SKTAudio.sharedInstance().pauseBackgroundMusic()
             } else {
                 objectNode?.removeFromParent()
                 shieldObject.removeAllChildren()
@@ -69,6 +73,7 @@ extension GameScene {
         }
         
         if contact.bodyA.categoryBitMask == shieldGroup || contact.bodyB.categoryBitMask == shieldGroup {
+            levelUp()
             let shieldNode = contact.bodyA.categoryBitMask == shieldGroup ? contact.bodyA.node : contact.bodyB.node
             
             if shieldBool == false {
@@ -85,18 +90,47 @@ extension GameScene {
                 
         
         if contact.bodyA.categoryBitMask == coinGroup || contact.bodyB.categoryBitMask == coinGroup {
+            levelUp() 
             let coinNode = contact.bodyA.categoryBitMask == coinGroup ? contact.bodyA.node: contact.bodyB.node
             
             if sound == true {
                 run(pickCoinPreload)
             }
             
-            score = score + 1
-            scoreLabel.text = "\(score)"
+            switch stageLabel.text! {
+            case "Stage 1":
+                if gSceneDifficulty.rawValue == 0 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 1
+                } else if gSceneDifficulty.rawValue == 1 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 2
+                } else if gSceneDifficulty.rawValue == 2 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 3
+                }
+            case "Stage 2":
+                if gSceneDifficulty.rawValue == 0 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 2
+                } else if gSceneDifficulty.rawValue == 1 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 3
+                } else if gSceneDifficulty.rawValue == 2 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 4
+                }
+            case "Stage 3":
+                if gSceneDifficulty.rawValue == 0 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 3
+                } else if gSceneDifficulty.rawValue == 1 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 4
+                } else if gSceneDifficulty.rawValue == 2 {
+                    Model.sharedInstance.score = Model.sharedInstance.score + 5
+                }
+            default:break
+            }
+            
+            scoreLabel.text = "\(Model.sharedInstance.score)"
             
             coinNode?.removeFromParent()
             
         }
+        UserDefaults.standard.set(Model.sharedInstance.totalscore, forKey: "totalscore")
     }
     
 }

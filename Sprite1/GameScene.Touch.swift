@@ -19,7 +19,7 @@ extension GameScene{
             
             if gameover == 0 {
         hero.physicsBody?.velocity = CGVector.zero
-        hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 180))
+        hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 120))
             }
         }
     

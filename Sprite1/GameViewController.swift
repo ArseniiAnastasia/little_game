@@ -14,7 +14,13 @@ class GameViewController: UIViewController {
     var scene = GameScene(size: CGSize(width: 1024, height: 768))
     let textureAtlas = SKTextureAtlas(named: "scene.atlas")
     
+    //Variables
+    var gVCBgChoosing: BgCoosing!
+    var gVCDifficulty: DifficultyChoosing!
+    
+    
     @IBOutlet weak var reloadGameBtn: UIButton!
+    @IBOutlet weak var returnMainBtn: UIButton!
     @IBOutlet weak var loadingView: UIView!
 
     override func viewDidLoad() {
@@ -29,6 +35,8 @@ class GameViewController: UIViewController {
         view.ignoresSiblingOrder = true
         
         scene.scaleMode = .aspectFill
+        scene.gSceneBg = gVCBgChoosing
+        scene.gSceneDifficulty = gVCDifficulty
         scene.gameViewControllerBridge = self
         
         textureAtlas.preload {
@@ -43,6 +51,15 @@ class GameViewController: UIViewController {
         scene.reloadGame()
         scene.gameViewControllerBridge = self
         reloadGameBtn.isHidden = true
+    }
+    
+    @IBAction func returnSelectBackGround(sender: UIButton) {
+        navigationController?.popViewController(animated: false)
+        navigationController?.dismiss(animated: false, completion: nil)
+        
+        DispatchQueue.main.async {
+            self.scene.removeAll()
+        }
     }
 
     override var shouldAutorotate: Bool {

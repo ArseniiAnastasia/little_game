@@ -20,9 +20,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameViewControllerBridge: GameViewController!
     var moveElectricGateY = SKAction()
     var shieldBool = false
-    var score = 0
-    var highscore = 0
     var gameover = 0
+    var gSceneDifficulty: DifficultyChoosing!
+    var gSceneBg: BgCoosing! 
+   
     
     //Texture
     var bgTexture: SKTexture!
@@ -120,8 +121,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createObjects()
         
         if UserDefaults.standard.object(forKey: "highScore") != nil {
-            highscore = UserDefaults.standard.object(forKey: "highScore") as! Int
-            highscoreLabel.text = "\(highscore)"
+            Model.sharedInstance.highscore = UserDefaults.standard.object(forKey: "highScore") as! Int
+            highscoreLabel.text = "\(Model.sharedInstance.highscore)"
+        }
+        
+        if UserDefaults.standard.object(forKey: "totalscore") != nil {
+            Model.sharedInstance.totalscore = UserDefaults.standard.object(forKey: "totalscore") as! Int
         }
         
         if gameover == 0 {
@@ -159,6 +164,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     highscoreTextLabel.isHidden = true
     
     gameViewControllerBridge.reloadGameBtn.isHidden = true
+    gameViewControllerBridge.returnMainBtn.isHidden = true
     
     if labelObject.children.count != 0 {
     labelObject.removeAllChildren()
@@ -166,7 +172,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
     
     func createBg(){
-        bgTexture = SKTexture(imageNamed: "bg01.png")
+        //bgTexture = SKTexture(imageNamed: "bg01.png")
+        switch gSceneBg.rawValue {
+        case 0:
+            bgTexture = SKTexture(imageNamed: "bg01.png")
+        case 1:
+            bgTexture = SKTexture(imageNamed: "bg02.png")
+        default:
+            break
+        }
         
         let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 4)
         let replaceBg = SKAction.moveBy(x: bgTexture.size().width, y: 0, duration: 0)
@@ -219,12 +233,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody?.allowsRotation = false
         hero.zPosition = 1
         
-        
-        
         heroObject.addChild(hero)
-        
-
-        
+         
     }
     
     func createHero() {
@@ -448,6 +458,27 @@ func showStage() {
     stageLabel.zPosition = 1
     self.addChild(stageLabel)
 }
+    
+    func levelUp() {
+        if 1 <= Model.sharedInstance.score && Model.sharedInstance.score < 20 {
+            stageLabel.text = "Stage 1"
+            coinObject.speed = 1.05
+            movingObject.speed = 1.05
+            
+            self.speed = 1.05
+        } else if 20 <= Model.sharedInstance.score && Model.sharedInstance.score < 36 {
+            stageLabel.text = "Stage 2"
+            coinObject.speed = 1.22
+            movingObject.speed = -1.22
+            
+            self.speed = 1.22
+        } else if 36 <= Model.sharedInstance.score && Model.sharedInstance.score < 56 {
+            stageLabel.text = "Stage 3"
+            coinObject.speed = 1.3
+            movingObject.speed = 1.3
+            self.speed = 1.3
+        }
+    }
 
 func timerFunc() {
     
@@ -457,10 +488,28 @@ func timerFunc() {
     timerAddShieldItem.invalidate()
     
     timerAddCoin = Timer.scheduledTimer(timeInterval: 2.64, target: self, selector: #selector(GameScene.addCoin), userInfo: nil, repeats: true)
-    timerAddElectricGate = Timer.scheduledTimer(timeInterval: 5.234, target: self, selector: #selector(GameScene.addElectricGate), userInfo: nil, repeats: true)
-    timerAddMine = Timer.scheduledTimer(timeInterval: 4.245, target: self, selector: #selector(GameScene.addMine), userInfo: nil, repeats: true)
     
-    timerAddShieldItem = Timer.scheduledTimer(timeInterval: 15.246, target: self, selector: #selector(GameScene.addShieldItem), userInfo: nil, repeats: true)
+    switch gSceneDifficulty.rawValue {
+    case 0: //easy
+        timerAddElectricGate = Timer.scheduledTimer(timeInterval: 5.234, target: self, selector: #selector(GameScene.addElectricGate), userInfo: nil, repeats: true)
+        timerAddMine = Timer.scheduledTimer(timeInterval: 4.245, target: self, selector: #selector(GameScene.addMine), userInfo: nil, repeats: true)
+        
+        timerAddShieldItem = Timer.scheduledTimer(timeInterval: 20.246, target: self, selector: #selector(GameScene.addShieldItem), userInfo: nil, repeats: true)
+    case 1: //medium
+        timerAddElectricGate = Timer.scheduledTimer(timeInterval: 3.234, target: self, selector: #selector(GameScene.addElectricGate), userInfo: nil, repeats: true)
+        timerAddMine = Timer.scheduledTimer(timeInterval: 3.245, target: self, selector: #selector(GameScene.addMine), userInfo: nil, repeats: true)
+        
+        
+        timerAddShieldItem = Timer.scheduledTimer(timeInterval: 30.246, target: self, selector: #selector(GameScene.addShieldItem), userInfo: nil, repeats: true)
+    case 2: //hard
+        timerAddElectricGate = Timer.scheduledTimer(timeInterval: 3.034, target: self, selector: #selector(GameScene.addElectricGate), userInfo: nil, repeats: true)
+        timerAddMine = Timer.scheduledTimer(timeInterval: 2.945, target: self, selector: #selector(GameScene.addMine), userInfo: nil, repeats: true)
+       
+        
+        timerAddShieldItem = Timer.scheduledTimer(timeInterval: 40.246, target: self, selector: #selector(GameScene.addShieldItem), userInfo: nil, repeats: true)
+    default: break
+    }
+    
 }
 
 func stopGameObject() {
@@ -470,6 +519,10 @@ func stopGameObject() {
 }
 
 func reloadGame() {
+    
+    if sound == true {
+        SKTAudio.sharedInstance().resumeBackgroundMusic()
+    }
     coinObject.removeAllChildren()
     
     stageLabel.text = "Stage 1"
@@ -491,7 +544,9 @@ func reloadGame() {
     createGround()
     createHero()
     
-    score = 0
+    gameViewControllerBridge.returnMainBtn.isHidden = true
+    
+    Model.sharedInstance.score = 0
     scoreLabel.text = "0"
     stageLabel.isHidden = false
     highscoreTextLabel.isHidden = true
@@ -509,7 +564,32 @@ override func didFinishUpdate() {
     shield.position = hero.position + CGPoint(x: 0, y: 0)
     }
 
-}
+    
+    
+    func removeAll() {
+        Model.sharedInstance.score = 0
+        scoreLabel.text = "0"
+        
+        gameover = 0
+        
+        if labelObject.children.count != 0 {
+            labelObject.removeAllChildren()
+        }
+        
+        timerAddCoin.invalidate()
+        timerAddElectricGate.invalidate()
+        timerAddMine.invalidate()
+        timerAddShieldItem.invalidate()
+        
+        
+        self.removeAllActions()
+        self.removeAllChildren()
+        self.removeFromParent()
+        self.view?.removeFromSuperview()
+        gameViewControllerBridge = nil
+        }
+    }
+
 
 
 
